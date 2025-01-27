@@ -1,12 +1,9 @@
 <template>
 	<div
 		class="group relative overflow-hidden rounded-2xl bg-white shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2"
-		v-scroll-reveal="{
-			origin: 'bottom',
-			distance: '50px',
-			duration: 800,
-			delay: index * 200,
-		}">
+		data-aos="fade-up"
+		:data-aos-delay="index * 200"
+		data-aos-duration="800">
 		<div class="relative overflow-hidden">
 			<img
 				:src="project.image"
@@ -16,11 +13,24 @@
 				class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 		</div>
 		<div class="p-6 transform transition-transform duration-500">
-			<h3 class="text-2xl font-bold text-gray-900 mb-4">
+			<h3
+				class="text-2xl font-bold text-gray-900 mb-4"
+				data-aos="fade-right"
+				:data-aos-delay="index * 200 + 100"
+				data-aos-duration="800">
 				{{ project.title }}
 			</h3>
-			<p class="text-gray-600 mb-6">{{ project.description }}</p>
-			<div class="flex gap-4">
+			<p
+				class="text-gray-600 mb-6"
+				data-aos="fade-left"
+				:data-aos-delay="index * 200 + 200"
+				data-aos-duration="800">
+				{{ project.description }}
+			</p>
+			<div
+				class="flex gap-4"
+				data-aos="fade-up"
+				:data-aos-delay="index * 200 + 300">
 				<a
 					v-for="link in project.links"
 					:key="link.text"
@@ -40,5 +50,15 @@
 </template>
 
 <script setup>
-	defineProps(["project"]);
+	import AOS from "aos";
+	import "aos/dist/aos.css";
+	import { onMounted } from "vue";
+
+	// Props
+	defineProps(["project", "index"]);
+
+	// Inizializzazione di AOS
+	onMounted(() => {
+		AOS.init();
+	});
 </script>

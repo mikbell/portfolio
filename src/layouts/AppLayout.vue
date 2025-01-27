@@ -3,10 +3,10 @@
 		<!-- Navigation Desktop -->
 		<nav
 			class="hidden md:flex justify-between items-center h-20 max-w-7xl mx-auto px-8 fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-sm z-50">
-			<div
+			<a href="#hero"
 				class="text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
 				Michele Campanello
-			</div>
+			</a>
 			<ul class="flex gap-8">
 				<li v-for="item in navItems" :key="item">
 					<NavLink :href="`#${item.toLowerCase()}`">
@@ -19,10 +19,10 @@
 		<!-- Navigation Mobile -->
 		<nav
 			class="md:hidden flex justify-between items-center h-20 px-6 fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-sm z-50">
-			<div
+			<a href="#hero"
 				class="text-2xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
 				MC
-			</div>
+			</a>
 			<div class="relative">
 				<button @click="isMenuOpen = !isMenuOpen" class="p-2">
 					<Menu class="w-6 h-6" />
