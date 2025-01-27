@@ -80,41 +80,10 @@
 			<div class="max-w-7xl mx-auto px-4">
 				<Title>Competenze</Title>
 				<div class="grid md:grid-cols-2 gap-8">
-					<div
+					<SkillCard
 						v-for="(category, categoryIndex) in skills"
 						:key="categoryIndex"
-						class="p-8 rounded-2xl bg-gray-50 transform transition-all duration-500"
-						:style="{ animationDelay: `${categoryIndex * 200}ms` }"
-						v-scroll-reveal="{
-							origin: 'left',
-							distance: '50px',
-							duration: 800,
-							delay: categoryIndex * 200,
-						}">
-						<h3 class="text-2xl font-bold text-gray-900 mb-8">
-							{{ category.title }}
-						</h3>
-						<div class="grid grid-cols-2 gap-6">
-							<div
-								v-for="(skill, skillIndex) in category.items"
-								:key="skill.name"
-								class="flex items-center gap-3 p-4 rounded-lg bg-white shadow-sm hover:shadow-xl transition-all duration-300 hover:scale-105"
-								:style="{ animationDelay: `${skillIndex * 100}ms` }"
-								v-scroll-reveal="{
-									origin: 'bottom',
-									distance: '20px',
-									duration: 600,
-									delay: skillIndex * 100,
-								}">
-								<BadgeCheck
-									class="w-5 h-5 text-gray-600 animate-bounce-subtle" />
-								<div>
-									<h4 class="font-medium text-gray-900">{{ skill.name }}</h4>
-									<p class="text-sm text-gray-600">{{ skill.level }}</p>
-								</div>
-							</div>
-						</div>
-					</div>
+						:category />
 				</div>
 			</div>
 		</section>
@@ -124,46 +93,10 @@
 			<div class="max-w-7xl mx-auto px-4">
 				<Title>Progetti</Title>
 				<div class="grid md:grid-cols-2 gap-8">
-					<div
-						v-for="(project, index) in projects"
+					<ProjectCard
+						v-for="project in projects"
 						:key="project.title"
-						class="group relative overflow-hidden rounded-2xl bg-white shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2"
-						v-scroll-reveal="{
-							origin: 'bottom',
-							distance: '50px',
-							duration: 800,
-							delay: index * 200,
-						}">
-						<div class="relative overflow-hidden">
-							<img
-								:src="project.image"
-								:alt="project.title"
-								class="w-full aspect-video object-cover transition-all duration-500 group-hover:scale-110" />
-							<div
-								class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-						</div>
-						<div class="p-6 transform transition-transform duration-500">
-							<h3 class="text-2xl font-bold text-gray-900 mb-4">
-								{{ project.title }}
-							</h3>
-							<p class="text-gray-600 mb-6">{{ project.description }}</p>
-							<div class="flex gap-4">
-								<a
-									v-for="link in project.links"
-									:key="link.text"
-									:href="link.url"
-									target="_blank"
-									class="px-6 py-2 rounded-full font-medium border-2 border-gray-900 transition-all duration-300 hover:scale-105"
-									:class="
-										link.primary
-											? 'bg-gray-900 text-white hover:bg-gray-800'
-											: 'bg-white text-gray-900 hover:bg-gray-100'
-									">
-									{{ link.text }}
-								</a>
-							</div>
-						</div>
-					</div>
+						:project />
 				</div>
 			</div>
 		</section>
@@ -204,11 +137,13 @@
 	import { BadgeCheck, Mail, Linkedin, Github } from "lucide-vue-next";
 	import PrimaryButton from "./components/PrimaryButton.vue";
 	import SecondaryButton from "./components/SecondaryButton.vue";
-	import Title from "./components/Title.vue";
+	import Title from "./components/Heading2.vue";
 	import profileImage from "./assets/profile.jpg";
 	import cineLabImage from "./assets/cinelab.png";
 	import gameSpaceImage from "./assets/gamespace.png";
 	import { ref, onMounted, onBeforeUnmount } from "vue";
+	import ProjectCard from "./components/ProjectCard.vue";
+	import SkillCard from "./components/SkillCard.vue";
 
 	const isVisible = ref(true);
 	const showPresentation = ref(false); // Stato per mostrare la sezione
