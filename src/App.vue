@@ -30,7 +30,8 @@
 						<div class="flex flex-wrap gap-4 justify-center md:justify-start">
 							<SecondaryButton
 								as="a"
-								href="#progetti"
+								href="/CV.pdf"
+								download
 								class="animate-bounce-subtle">
 								Download CV
 							</SecondaryButton>
