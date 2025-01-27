@@ -76,13 +76,3 @@
 
 	const isMenuOpen = ref(false);
 </script>
-
-<style>
-	body {
-		font-family: "Poppins", sans-serif;
-	}
-
-	html {
-		scroll-behavior: smooth;
-	}
-</style>
