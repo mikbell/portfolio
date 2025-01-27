@@ -8,12 +8,12 @@
 				<div
 					v-for="(category, categoryIndex) in skills"
 					:key="categoryIndex"
-					class="p-8 rounded-2xl bg-gradient-to-br from-gray-50 via-gray-100 to-gray-50 shadow-lg transform transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl"
+					class="p-8 rounded-2xl bg-gradient-to-br from-gray-50 via-gray-100 to-gray-50 shadow-lg transform scale-100 transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl"
 					data-aos="fade-up"
 					:data-aos-delay="categoryIndex * 200"
 					data-aos-duration="800">
 					<h3
-						class="text-3xl font-bold text-gray-900 mb-8 border-b-2 border-gray-200 pb-2"
+						class="text-3xl font-bold text-gray-900 mb-8 border-b-2 border-gray-200 pb-2 transition-transform duration-700"
 						data-aos="fade-right"
 						:data-aos-delay="categoryIndex * 200 + 100"
 						data-aos-duration="1000">

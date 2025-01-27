@@ -2,7 +2,7 @@
 	<div class="min-h-screen bg-gray-50">
 		<!-- Navigation Desktop -->
 		<nav
-			class="hidden md:flex justify-between items-center h-20 max-w-7xl mx-auto px-8 fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-sm z-50">
+			class="hidden md:flex justify-between items-center h-20 max-w-7xl mx-auto px-8 fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-sm z-50 shadow-sm">
 			<a href="#hero"
 				class="text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
 				Michele Campanello
@@ -18,27 +18,33 @@
 
 		<!-- Navigation Mobile -->
 		<nav
-			class="md:hidden flex justify-between items-center h-20 px-6 fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-sm z-50">
+			class="md:hidden flex justify-between items-center h-20 px-6 fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-sm z-50 shadow-sm">
 			<a href="#hero"
 				class="text-2xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
 				MC
 			</a>
 			<div class="relative">
-				<button @click="isMenuOpen = !isMenuOpen" class="p-2">
+				<button
+					@click="toggleMenu"
+					class="p-2"
+					:aria-expanded="isMenuOpen.toString()"
+					aria-label="Apri menu di navigazione">
 					<Menu class="w-6 h-6" />
 				</button>
-				<div
-					v-show="isMenuOpen"
-					class="absolute top-full right-0 w-48 bg-white shadow-lg rounded-lg py-2 mt-2">
-					<a
-						v-for="item in navItems"
-						:key="item"
-						:href="`#${item.toLowerCase()}`"
-						class="block px-4 py-2 text-gray-700 hover:bg-gray-100"
-						@click="isMenuOpen = false">
-						{{ item }}
-					</a>
-				</div>
+				<transition name="fade">
+					<div
+						v-show="isMenuOpen"
+						class="absolute top-full right-0 w-48 bg-white shadow-lg rounded-lg py-2 mt-2">
+						<a
+							v-for="item in navItems"
+							:key="item"
+							:href="`#${item.toLowerCase()}`"
+							class="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+							@click="closeMenu">
+							{{ item }}
+						</a>
+					</div>
+				</transition>
 			</div>
 		</nav>
 
@@ -69,10 +75,31 @@
 </template>
 
 <script setup>
-	import { ref } from "vue";
-	import { Menu } from "lucide-vue-next";
-	import NavLink from "../components/NavLink.vue";
-	const navItems = ["Presentazione", "Competenze", "Progetti", "Contatti"];
+import { ref } from "vue";
+import { Menu } from "lucide-vue-next";
+import NavLink from "../components/NavLink.vue";
 
-	const isMenuOpen = ref(false);
+const navItems = ["Presentazione", "Competenze", "Progetti", "Contatti"];
+const isMenuOpen = ref(false);
+
+// Toggle Menu
+const toggleMenu = () => {
+	isMenuOpen.value = !isMenuOpen.value;
+};
+
+// Close Menu
+const closeMenu = () => {
+	isMenuOpen.value = false;
+};
 </script>
+
+<style>
+.fade-enter-active,
+.fade-leave-active {
+	transition: opacity 0.3s;
+}
+.fade-enter-from,
+.fade-leave-to {
+	opacity: 0;
+}
+</style>
