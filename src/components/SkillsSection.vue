@@ -47,15 +47,5 @@
 <script setup>
 	import Heading2 from "./Heading2.vue";
 	import { BadgeCheck } from "lucide-vue-next";
-	import AOS from "aos";
-	import "aos/dist/aos.css";
-	import { onMounted } from "vue";
-
-	// Props
 	defineProps(["skills"]);
-
-	// Initialize AOS on component mount
-	onMounted(() => {
-		AOS.init();
-	});
 </script>

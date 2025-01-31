@@ -1,5 +1,12 @@
-import { createApp } from 'vue'
-import './style.css'
-import Index from './Index.vue'
+import { createApp } from "vue";
+import "./style.css";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import Index from "./Index.vue";
 
-createApp(Index).mount('#app')
+const app = createApp(Index);
+
+app.AOS = AOS;
+AOS.init();
+
+app.mount("#app");
